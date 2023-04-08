@@ -1,0 +1,8 @@
+.vscode
+transplaterAPI/include
+transplaterAPI/pyvenv.cfg
+transplaterAPI/Lib
+transplaterAPI/Scripts
+transplaterAPI/Scripts
+transplaterAPI/translaterAPIs/translaterAPIs/.env
+transplaterAPI/translaterAPIs/db.sqlite3

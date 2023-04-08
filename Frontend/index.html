@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Translater API</title>
+
+  <script>
+
+    async function sendMessage(event) {
+      
+      event.preventDefault(); // prevent the form from submitting normally
+      const messageInput = document.getElementById("message");
+      const message = messageInput.value.trim();
+      if (message === "") {
+        alert("Message cannot be empty.");
+        return;
+      }
+      const url = "http://127.0.0.1:8000/deepl/";
+      const data = { message };
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      document.getElementById("requestMessage").innerHTML = result.message;
+      console.log("Response:", result);
+      messageInput.value = ""; // Clear the input field
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <form onsubmit="sendMessage(event)">
+    <label for="message">Message:</label>
+    <input type="text" id="message" name="message" required>
+    <button type="submit">Translate</button>
+  </form>
+  <div id="requestMessage"></div>
+
+
+</body>
+
+</html>
